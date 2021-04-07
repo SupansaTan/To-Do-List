@@ -1,0 +1,22 @@
+ListView {
+    margin: 10px 30px 10px 30px;
+    color: rgb(43, 40, 40);
+}
+
+GridLayout {
+    margin: 5px;
+    padding: 40px;
+    border-radius: 50px;
+    background-color: #fafafa;
+}
+
+.header {
+    font-size: 20px;
+    font-weight: 600;
+    text-align: left;
+}
+
+.countdown {
+    font-size: 15px;
+    text-align: right;
+}

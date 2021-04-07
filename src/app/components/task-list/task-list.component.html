@@ -1,0 +1,13 @@
+
+
+<ListView [items]="tasks" class="list-group" separatorColor="transparent" height="100%">
+    <ng-template let-item="item">
+        <CardView class="card" ripple="true" margin="5">
+            <GridLayout rows="*,*" columns="*">
+                <Label class="header" row="0" col="0" [text]="item.name"></Label>
+                <Label class="countdown" row="1" col="0" [text]="item.date"></Label>
+            </GridLayout>
+        </CardView>
+    </ng-template>
+</ListView>
+
