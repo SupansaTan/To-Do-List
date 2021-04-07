@@ -1,3 +1,7 @@
-<ActionBar flat="true" title="To-Do List">
+<ActionBar *ngIf="router.url === '/'" flat="true" title="To-Do List">
     <ActionItem ios.systemIcon="4" android.systemIcon="ic_menu_add" ios.position="right" [nsRouterLink]="['/add']"></ActionItem>
+</ActionBar>
+
+<ActionBar *ngIf="router.url === '/add'" flat="true" title="Add Tasks">
+    <NavigationButton icon="res://ic_arrow_back_black_24dp" [nsRouterLink]="['/']"></NavigationButton>
 </ActionBar>

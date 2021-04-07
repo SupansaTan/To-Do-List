@@ -1,0 +1,39 @@
+StackLayout {
+    background-color: #79d8f8;
+}
+
+GridLayout {
+    margin: 50px;
+    padding: 40px;
+    border-radius: 50px;
+    background-color: #F2F2F7;
+    height: auto;
+}
+
+Label {
+    margin: 20px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+TextFeild {
+    margin: 20px;
+}
+
+TextView {
+    margin: 20px;
+    font-size: 16px;
+}
+
+DatePicker {
+    margin-left: 20px;
+}
+
+Button {
+    height: 8%;
+    background-color: #007AFF;
+    color: white;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: 500;
+}
