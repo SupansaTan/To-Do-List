@@ -1,7 +1,7 @@
 import { NativeScriptConfig } from '@nativescript/core';
 
 export default {
-  id: 'org.nativescript.todolist',
+  id: 'org.nativescript.ToDoList',
   appPath: 'src',
   appResourcesPath: 'App_Resources',
   android: {

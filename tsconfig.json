@@ -8,13 +8,14 @@
     "noEmitHelpers": true,
     "noEmitOnError": true,
     "skipLibCheck": true,
-    "lib": ["es2018", "es2017", "dom", "es6"],
+    "lib": ["es2017", "dom"],
     "baseUrl": ".",
     "paths": {
-      "~/*": ["src/*"]
+      "~/*": ["src/*"],
+      "@/*": ["src/*"]
     }
   },
   "include": ["src/tests/**/*.ts", "src/**/*.ios.ts", "src/**/*.android.ts"],
-  "files": ["./references.d.ts", "./src/main.ts"],
+  "files": ["./src/main.ts", "./references.d.ts"],
   "exclude": ["node_modules", "platforms", "e2e"]
 }
