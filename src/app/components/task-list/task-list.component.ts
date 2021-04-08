@@ -1,23 +1,20 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { TaskService } from "~/app/task.service";
-import { Task } from '../../task'
+import { Page } from "@nativescript/core";
+import { Location } from '@angular/common'
 
 @Component ({
     selector: "task-list",
     templateUrl: "./task-list.component.html",
     styleUrls: ["./task-list.component.css"],
-    providers: [TaskService],
+    moduleId: module.id,
 })
 
-export class TaskListComponent implements OnInit {
-    tasks = [];
+export class TaskListComponent {
+    public tasks : Array<any>;
 
-    constructor(private taskService : TaskService) { 
+    public constructor(private taskService : TaskService, public page: Page) { 
         this.tasks = this.taskService.getTasks();
     }
 
-    ngOnInit() {
-        this.tasks = this.taskService.getTasks();
-        this.tasks.slice()
-    }
 }
