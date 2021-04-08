@@ -9,11 +9,15 @@ import { Task } from '../../task'
     providers: [TaskService],
 })
 
-export class TaskListComponent {
-    tasks : Array<Task>;
+export class TaskListComponent implements OnInit {
+    tasks = [];
 
     constructor(private taskService : TaskService) { 
-        this.tasks = taskService.getTasks();
+        this.tasks = this.taskService.getTasks();
     }
 
+    ngOnInit() {
+        this.tasks = this.taskService.getTasks();
+        this.tasks.slice()
+    }
 }

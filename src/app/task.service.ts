@@ -8,7 +8,7 @@ import { Task } from './task'
     providedIn: 'root'
 })
 export class TaskService {
-    tasks : Array<Task>;
+    tasks = [];
 
     constructor() { 
         this.tasks = [

@@ -10,6 +10,6 @@ import { Router } from '@angular/router';
 
 export class TopBarComponent {
 
-    constructor(private router: Router) { }
+    constructor(public router: Router) { }
 
 }
