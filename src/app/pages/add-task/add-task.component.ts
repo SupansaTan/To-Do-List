@@ -11,17 +11,20 @@ import { Location } from '@angular/common'
 })
 
 export class AddTaskComponent {
+    minDate: Date = new Date()
+    maxDate: Date = new Date(2045, 4, 12)
+
     task_name : string;
     task_detail: string;
-    time = new Date();
-    date = new Date();
+    datetime : Date;
 
-    public constructor(private taskService: TaskService, public datepipe: DatePipe, public location: Location) { }
+    public constructor(private taskService: TaskService,public datepipe: DatePipe, public location: Location) {
+        this.datetime = new Date();
+    }
 
-    public add(){
-        let date_format = this.datepipe.transform(this.date, 'dd/MM/yyyy');
-        let time_format = this.datepipe.transform(this.time, 'h:mm a');
-        this.taskService.addTask(this.task_name, this.task_detail, date_format + "," + time_format)
+    public add() {
+        let datetime_format = this.datepipe.transform(this.datetime, 'dd/MM/yyyy h:mm a');
+        this.taskService.addTask(this.task_name, this.task_detail, this.datetime)
         this.location.back()
     }
 }

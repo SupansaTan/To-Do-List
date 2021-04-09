@@ -31,7 +31,7 @@ export class TaskService {
         return this.tasks[id];
     }
 
-    public addTask(name: string, detail:string, date: string){
+    public addTask(name: string, detail:string, datetime: Date){
         let last_id;
 
         /* get id */
@@ -47,7 +47,7 @@ export class TaskService {
               'id': last_id+1,
               'name': name,
               'detail': detail,
-              'date': date
+              'date': datetime
             }
         );
         AppSettings.setString("TaskData", JSON.stringify(this.tasks));

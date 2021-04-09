@@ -3,6 +3,7 @@ import { NativeScriptModule } from '@nativescript/angular'
 import { NativeScriptFormsModule } from "@nativescript/angular";
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
+import { NativeScriptDateTimePickerModule } from "@nativescript/datetimepicker/angular";
 
 import { HomeComponent } from './pages/home/home.component'
 import { TopBarComponent } from './components/top-bar/top-bar.component'
@@ -15,7 +16,7 @@ import { DatePipe } from '@angular/common'
 
 @NgModule({
   bootstrap: [AppComponent],
-  imports: [NativeScriptModule, AppRoutingModule, NativeScriptFormsModule ],
+  imports: [NativeScriptModule, AppRoutingModule, NativeScriptFormsModule, NativeScriptDateTimePickerModule ],
   declarations: [AppComponent, HomeComponent, TopBarComponent, TaskListComponent, AddTaskComponent],
   providers: [TaskService, DatePipe],
   schemas: [NO_ERRORS_SCHEMA],
