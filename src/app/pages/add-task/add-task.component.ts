@@ -21,7 +21,7 @@ export class AddTaskComponent {
     public add(){
         let date_format = this.datepipe.transform(this.date, 'dd/MM/yyyy');
         let time_format = this.datepipe.transform(this.time, 'h:mm a');
-        this.taskService.addTask(this.task_name, date_format + "," + time_format)
+        this.taskService.addTask(this.task_name, this.task_detail, date_format + "," + time_format)
         this.location.back()
     }
 }

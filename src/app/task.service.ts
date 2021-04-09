@@ -12,29 +12,14 @@ export class TaskService {
     public constructor() { 
         const openFirstTime = AppSettings.getBoolean("FistTime");
 
+        /* check using app first time or not */
         if(openFirstTime == null || openFirstTime == undefined){
-            this.tasks = [
-                {
-                    id: 1,
-                    name: 'Assignment 4',
-                    date: '17/04/63,7:30 AM'
-                },
-                {
-                    id: 2,
-                    name: 'Assignment 5',
-                    date: '20/04/63,9:00 PM'
-                },
-                {
-                    id: 3,
-                    name: 'Network Lab',
-                    date: '26/05/63,6:00 PM'
-                }
-            ]
-            AppSettings.setString("TasksData", JSON.stringify(this.tasks));
+            this.tasks = []
+            AppSettings.setString("TaskData", JSON.stringify(this.tasks)); // store tasks data
             AppSettings.setBoolean("FistTime", false);
         }
         else {
-            this.tasks = JSON.parse(AppSettings.getString("TasksData"));
+            this.tasks = JSON.parse(AppSettings.getString("TaskData")); // get task data that store in app settings
         }
     }
 
@@ -46,15 +31,25 @@ export class TaskService {
         return this.tasks[id];
     }
 
-    public addTask(name: string, date: string){
-        const last_id = this.tasks[this.tasks.length-1].id
+    public addTask(name: string, detail:string, date: string){
+        let last_id;
+
+        /* get id */
+        if (this.tasks.length == 0){
+            last_id = 0
+        }
+        else {
+            last_id = this.tasks[this.tasks.length-1].id
+        }
+
         this.tasks.push(
             {
               'id': last_id+1,
               'name': name,
+              'detail': detail,
               'date': date
             }
         );
-        AppSettings.setString("TasksData", JSON.stringify(this.tasks));
+        AppSettings.setString("TaskData", JSON.stringify(this.tasks));
     }
 }

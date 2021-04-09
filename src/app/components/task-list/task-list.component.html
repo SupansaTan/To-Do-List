@@ -1,8 +1,16 @@
+<GridLayout rows="auto,*" columns="*" *ngIf="this.tasks.length == 0">
+    <Image row="0" col="0" src="~/app/images/add-task.png" horizontalAlignment="right" marginRight="20"
+        class="add-task-img" width="170" stretch="aspectFit">
+    </Image>
+    <Image row="1" col="0" horizontalAlignment="center" verticalAlignment="center" src="~/app/images/task-empty.png" 
+        class="task-empty-img" width="200" stretch="aspectFit" marginTop="-50">
+    </Image>
+</GridLayout>
 
 <StackLayout>
     <ListView [items]="tasks" class="list-group" separatorColor="transparent" height="100%">
         <ng-template let-item="item">
-            <GridLayout rows="*,*" columns="*">
+            <GridLayout rows="*,*" columns="*" class="list-card">
                 <Label class="header" row="0" col="0" [text]="item.name"></Label>
                 <Label class="countdown" row="1" col="0" [text]="item.date"></Label>
             </GridLayout>
