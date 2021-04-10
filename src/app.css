@@ -20,3 +20,14 @@ This is where the vast majority of your CSS code goes. */
 The following CSS rule changes the font size of all Buttons that have the
 "-primary" class modifier.
 */
+.far {
+    font-family: "Font Awesome 5 Free", "fa-regular-400";
+}
+
+.fab {
+    font-family: "Font Awesome 5 Brands", "fa-brands-400";
+}
+
+.fas {
+    font-family: "Font Awesome 5 Free", "fa-solid-900";
+}

@@ -29,8 +29,28 @@ DatePicker {
     margin-left: 20px;
 }
 
-Button {
+.add-image-btn {
+    width: 30%;
+    height: 3%;
+    background-color: #F2F2F7;
+    color: black;
+    font-size: 16px;
+    border-radius: 25px;
+}
+
+.btn {
+    width: 20%;
+    height: 3%;
+    background-color: #F2F2F7;
+    color: black;
+    font-size: 16px;
+    border-radius: 25px;
+    visibility: collapsed;
+}
+
+.add.task {
     height: 8%;
+    margin: 0px 50px 50px 50px;
     background-color: #007AFF;
     color: white;
     border-radius: 50px;
