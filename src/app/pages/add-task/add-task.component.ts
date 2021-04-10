@@ -16,15 +16,18 @@ export class AddTaskComponent {
 
     task_name : string;
     task_detail: string;
-    datetime : Date;
+    date : Date;
+    time : Date;
 
     public constructor(private taskService: TaskService,public datepipe: DatePipe, public location: Location) {
-        this.datetime = new Date();
+        this.date = new Date();
+        this.time = new Date();
     }
 
     public add() {
-        let datetime_format = this.datepipe.transform(this.datetime, 'dd/MM/yyyy h:mm a');
-        this.taskService.addTask(this.task_name, this.task_detail, this.datetime)
+        let datetime = new Date(this.date.getFullYear(), this.date.getMonth(), this.date.getDate(),
+            this.time.getHours(),this.time.getMinutes())
+        this.taskService.addTask(this.task_name, this.task_detail, datetime)
         this.location.back()
     }
 }

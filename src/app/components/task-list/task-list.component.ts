@@ -21,6 +21,13 @@ export class TaskListComponent {
 
     public countdown(toDate : Date) {
         var now = new Date();
+
+        /* when getting task data from app settings date will be string type 
+           that will change to Date type */
+        if(typeof toDate === "string"){
+            toDate = new Date(Date.parse(toDate));
+        }
+
         var difference = toDate.getTime() - now.getTime(); // time difference
         
         var seconds = Math.floor(difference / 1000);

@@ -4,5 +4,5 @@
 </ActionBar>
 
 <ActionBar *ngIf="router.url === '/add'" flat="true" title="Add Tasks">
-    <NavigationButton icon="res://ic_arrow_back_black_24dp" [nsRouterLink]="['/']"></NavigationButton>
+    <NavigationButton android.systemIcon="ic_menu_back" text="Back" [nsRouterLink]="['/']"></NavigationButton>
 </ActionBar>
