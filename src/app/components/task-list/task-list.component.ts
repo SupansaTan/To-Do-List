@@ -3,7 +3,7 @@ import { TaskService } from "~/app/task.service";
 import { Page } from "@nativescript/core";
 import { Location } from '@angular/common';
 import { DatePipe } from '@angular/common'
-
+import { Dialogs } from '@nativescript/core'
 
 @Component ({
     selector: "task-list",
@@ -13,6 +13,8 @@ import { DatePipe } from '@angular/common'
 })
 
 export class TaskListComponent {
+    checklist_id : number;
+
     public tasks : Array<any>;
 
     public constructor(private taskService : TaskService, public datepipe: DatePipe, public page: Page) { 
@@ -52,5 +54,13 @@ export class TaskListComponent {
           str = str.replace(`{${index}}`, val[index]);
         }
         return str;
+    }
+
+    checklist(id : number){
+        this.checklist_id = id
+        setTimeout(() => {
+            this.taskService.deleteTask(id)
+            this.checklist_id = undefined
+        }, 300);
     }
 }

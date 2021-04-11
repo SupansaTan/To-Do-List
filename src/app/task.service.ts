@@ -31,7 +31,7 @@ export class TaskService {
         return this.tasks[id];
     }
 
-    public addTask(name: string, detail:string, datetime: Date){
+    public addTask(name: string, detail:string, datetime: Date, photoPath: Array<string>){
         let last_id;
 
         /* get id */
@@ -47,9 +47,20 @@ export class TaskService {
               'id': last_id+1,
               'name': name,
               'detail': detail,
-              'date': datetime
+              'date': datetime,
+              'photo': photoPath
             }
         );
         AppSettings.setString("TaskData", JSON.stringify(this.tasks));
+    }
+
+    public deleteTask(id:number){
+        for(let i = 0; i < this.tasks.length; i++) {
+            if(this.tasks[i].id == id) {
+              this.tasks.splice(i, 1);
+              AppSettings.setString("TaskData", JSON.stringify(this.tasks))
+              break;
+            }
+          }
     }
 }

@@ -16,7 +16,8 @@
             <Button text="&#xf03e;" class="fas picture btn" dock="left" visibility="{{ showButtons ? 'visible' : 'collapsed' }}">
             </Button>
         </DockLayout>
-        <Image row="5" col="0" [src]="imagePath" visibility="{{ hasImage ? 'visible' : 'collapsed' }}"></Image>
+        <Image row="5" col="0" [src]="imagePath" height="300px" width="auto" visibility="{{ hasImage ? 'visible' : 'collapsed' }}">
+        </Image>
         
         <Label row="6" col="0" text="Due Date"></Label>
         <DatePickerField row="7" col="0" [(ngModel)]="date"

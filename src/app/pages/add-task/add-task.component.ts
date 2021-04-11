@@ -24,6 +24,7 @@ export class AddTaskComponent {
 
     task_name : string;
     task_detail: string;
+    task_photo: Array<string> = [];
     date : Date;
     time : Date;
 
@@ -39,7 +40,8 @@ export class AddTaskComponent {
     public add() {
         let datetime = new Date(this.date.getFullYear(), this.date.getMonth(), this.date.getDate(),
             this.time.getHours(),this.time.getMinutes())
-        this.taskService.addTask(this.task_name, this.task_detail, datetime)
+        
+        this.taskService.addTask(this.task_name, this.task_detail, datetime, this.task_photo)
         this.location.back()
     }
 
@@ -55,7 +57,8 @@ export class AddTaskComponent {
             flatMap(() => camera.takePicture()),
             flatMap((imageAsset: ImageAsset) => ImageSource.fromAsset(imageAsset)),
             map((imageSource: ImageSource) => {
-                const fileName = "myPhoto.jpg";
+                const len_photo = this.task_photo.length+1
+                const fileName = this.task_name + len_photo + ".jpg";
                 const photoFilePath = this.createPhotoPath(fileName);
                 // Save photo in full quality to file
                 const success: boolean = imageSource.saveToFile(photoFilePath, 'jpg');
@@ -67,6 +70,7 @@ export class AddTaskComponent {
         ).subscribe(photoFilePath => {
             console.log('Photofilepath ' + photoFilePath);
             this.imagePath = photoFilePath;
+            this.task_photo.push(this.imagePath)
         }, error => {
             console.log(error);
         })
@@ -77,15 +81,22 @@ export class AddTaskComponent {
         if (!documentFolders) {
             throw new Error('Documents folder is not available');
         }
+
         // gets or creates photo folder
-        const photoFolderPath = documentFolders.getFolder("tempPhoto");
+        let photoFolderPath;
+        if (this.task_name != ""){
+            photoFolderPath = documentFolders.getFolder(this.task_name);
+        }
+        else{
+            photoFolderPath = documentFolders.getFolder("temp");
+        }
+
         // gets or creates empty file
         const photoFile = photoFolderPath.getFile(fileName);
         if (!photoFile) {
             throw new Error('Cannot create photo file');
         }
-        console.log('Created empty file for photo: ' + JSON.stringify(photoFile));
-        this.hasImage = true;
+        this.hasImage = true; // set image visible
         return photoFile.path;
     }
 }

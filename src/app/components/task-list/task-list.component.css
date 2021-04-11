@@ -4,7 +4,7 @@ ListView {
 }
 
 .list-card {
-    margin: 30px 0px 30px 0px;
+    margin: 5px 0px 5px 0px;
     padding: 40px;
     border-radius: 50px;
     background-color: #F2F2F7;
@@ -19,4 +19,9 @@ ListView {
 .countdown {
     font-size: 15px;
     text-align: right;
+}
+
+.checklist {
+    color: rgb(154, 221, 53);
+    font-size: 27px;
 }
