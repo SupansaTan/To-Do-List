@@ -10,16 +10,16 @@
 <StackLayout>
     <ListView [items]="tasks" class="list-group" separatorColor="transparent" height="100%">
         <ng-template let-item="item" let-i="index">
-            <AbsoluteLayout>
-                <GridLayout rows="*,*" columns="*" left="0" top="10" width="93%" class="list-card">
+            <StackLayout>
+                <GridLayout rows="*,*" columns="*,40" class="list-card">
                     <Label class="header" row="0" col="0" [text]="item.name"></Label>
-                    <Label class="countdown" row="1" col="0" [text]="countdown(item.date)"></Label>
+                    <Button row="0" col="1" backgroundColor="{{ checklist_id == item.id ? '#38ABFD': '#F1F1F4' }}" 
+                        borderRadius="50" class="{{ checklist_id == item.id ? 'fas checklist' : 'fas check' }}"
+                        text="&#xf00c;" width="35" height="35" (tap)="checklist(item.id)">
+                    </Button>
+                    <Label class="countdown" row="1" col="0" colSpan="2" [text]="countdown(item.date)"></Label>
                 </GridLayout>
-                <Button left="326" top="0" backgroundColor="{{ checklist_id == item.id ? '#fafafa': '#007AFF' }}" 
-                borderRadius="50" class="{{ checklist_id == item.id ? 'fas checklist' : '' }}"
-                text="{{ checklist_id == item.id ? '&#xf058;' : '' }}" width="35" height="35" (tap)="checklist(item.id)">
-                </Button>
-            </AbsoluteLayout>
+            </StackLayout>
         </ng-template>
     </ListView>
 </StackLayout>

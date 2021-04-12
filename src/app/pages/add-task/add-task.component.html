@@ -2,28 +2,28 @@
 <ScrollView>
 <StackLayout>
 
-    <GridLayout rows="auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*">
-        <Label row="0" col="0" text="Task name"></Label>
-        <TextField row="1" col="0" required hint="task name..." [(ngModel)]="task_name" fontSize="16px"></TextField>
+    <GridLayout rows="auto,auto,auto,auto,auto,auto,auto,auto" columns="*,*">
+        <Label row="0" col="0" colspan="2" text="Title"></Label>
+        <TextField row="1" col="0" colspan="2" required hint="task name..." [(ngModel)]="task_name" fontSize="16px"></TextField>
         
-        <Label row="2" col="0" text="Detail"></Label>
-        <TextView row="3" col="0" style="margin-top: 15px" borderColor="#DEDEDE" borderWidth="1" borderRadius="2" height="auto" 
+        <Label row="2" col="0" colspan="2" text="Detail"></Label>
+        <TextView row="3" col="0" colspan="2" style="margin-top: 15px" borderColor="#DEDEDE" borderWidth="1" borderRadius="2" height="auto" 
         hint="Enter Details..."  class="input input-border" [(ngModel)]="task_detail"></TextView>
-        <DockLayout visibility="{{ hasImage ? 'collapsed' : 'visible' }}" stretchLastChild="true" row="4" col="0">
+        <DockLayout visibility="{{ hasImage ? 'collapsed' : 'visible' }}" stretchLastChild="true" row="4" col="0" colspan="2">
             <Button class="add-image-btn" dock="left" text="Add image" (tap)="toggleVisible()"></Button>
             <Button text="&#xf030;" class="fas camera btn" dock="left" (tap)="takePhoto()" visibility="{{ showButtons ? 'visible' : 'collapsed' }}">
             </Button>
             <Button text="&#xf03e;" class="fas picture btn" dock="left" visibility="{{ showButtons ? 'visible' : 'collapsed' }}">
             </Button>
         </DockLayout>
-        <Image row="5" col="0" [src]="imagePath" height="300px" width="auto" visibility="{{ hasImage ? 'visible' : 'collapsed' }}">
+        <Image row="5" col="0" colspan="2" [src]="imagePath" height="300px" width="auto" visibility="{{ hasImage ? 'visible' : 'collapsed' }}">
         </Image>
         
-        <Label row="6" col="0" text="Due Date"></Label>
+        <Label row="6" col="0" colspan="2" text="Due Date"></Label>
         <DatePickerField row="7" col="0" [(ngModel)]="date"
             pickerOkText="OK" pickerCancelText="Cancel" pickerTitleDate="Select date" dateFormat="dd/MM/yyyy">
         </DatePickerField>
-        <TimePickerField row="8" col="0" [(ngModel)]="time"
+        <TimePickerField row="7" col="1" [(ngModel)]="time"
             pickerOkText="OK" pickerCancelText="Cancel" pickerTitleTime="Select time" 
             timeFormat="HH:mm">
         </TimePickerField>
