@@ -1,8 +1,8 @@
-StackLayout {
+.container {
     background-image: linear-gradient(#2974FA, #38ABFD, #43D4FF);
 }
 
-GridLayout {
+.grid-container {
     margin: 50px;
     padding: 40px;
     border-radius: 50px;
