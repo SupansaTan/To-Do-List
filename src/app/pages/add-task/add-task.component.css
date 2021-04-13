@@ -48,6 +48,12 @@ DatePicker {
     visibility: collapsed;
 }
 
+.delete {
+    background-color: #B22222;
+    color: white;
+    border-radius: 50px;
+}
+
 .add.task {
     height: 8%;
     margin: 0px 50px 50px 50px;

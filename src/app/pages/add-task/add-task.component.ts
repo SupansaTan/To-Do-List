@@ -41,13 +41,22 @@ export class AddTaskComponent {
     public add() {
         let datetime = new Date(this.date.getFullYear(), this.date.getMonth(), this.date.getDate(),
             this.time.getHours(),this.time.getMinutes())
-        
+
         this.taskService.addTask(this.task_name, this.task_detail, datetime, this.task_photo)
         this.location.back()
     }
 
     public toggleVisible(){
         this.showButtons = !this.showButtons;
+    }
+
+    public deletePhoto(path: string){
+        for(let i = 0; i < this.task_photo.length; i++) {
+            if(this.task_photo[i] == path) {
+              this.task_photo.splice(i, 1);
+              break;
+            }
+        }
     }
 
     takePhoto(): void {

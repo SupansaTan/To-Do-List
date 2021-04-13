@@ -61,6 +61,6 @@ export class TaskService {
               AppSettings.setString("TaskData", JSON.stringify(this.tasks))
               break;
             }
-          }
+        }
     }
 }
