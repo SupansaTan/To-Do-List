@@ -1,0 +1,9 @@
+<top-bar></top-bar>
+<StackLayout>
+    <Label text="Task Detail" textAlignment="center"></Label>
+    <Label [text]="'name: '+task.name"></Label>
+    <label [text]="'id: '+task.id"></label>
+    <Label [text]="'detail: '+task.detail"></Label>
+    <label [text]="'date: '+task.date"></label>
+    <Button text="edit"(tap)=edit(task.id)></Button>
+</StackLayout>

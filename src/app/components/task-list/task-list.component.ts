@@ -4,7 +4,7 @@ import { Page } from "@nativescript/core";
 import { Location } from '@angular/common';
 import { DatePipe } from '@angular/common'
 import { Dialogs } from '@nativescript/core'
-
+import { Router } from "@angular/router";
 @Component ({
     selector: "task-list",
     templateUrl: "./task-list.component.html",
@@ -18,7 +18,7 @@ export class TaskListComponent {
 
     public tasks : Array<any>;
 
-    public constructor(private taskService : TaskService, public datepipe: DatePipe, public page: Page) { 
+    public constructor(private router:Router,private taskService : TaskService, public datepipe: DatePipe, public page: Page) { 
         this.tasks = this.taskService.getTasks();
         this.approach_deadline = false;
     }
@@ -79,5 +79,8 @@ export class TaskListComponent {
             this.taskService.deleteTask(id)
             this.checklist_id = undefined
         }, 300);
+    }
+    toDetail(id) {
+        this.router.navigate(['/detail', id ]);
     }
 }
