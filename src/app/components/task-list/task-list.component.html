@@ -11,8 +11,8 @@
     <ListView [items]="tasks" class="list-group" separatorColor="transparent" height="100%">
         <ng-template let-item="item" let-i="index">
             <StackLayout>
-                <GridLayout rows="*,*" columns="*,40" class="list-card">
-                    <Label class="header" row="0" col="0" [text]="item.name"></Label>
+                <GridLayout rows="*,*" columns="*,40" class="list-card" >
+                    <Label class="header" row="0" col="0" [text]="item.name" (tap)="toDetail(item.id)"></Label>
                     <Button row="0" col="1" backgroundColor="{{ checklist_id == item.id ? '#38ABFD': '#F1F1F4' }}" 
                         borderRadius="50" class="{{ checklist_id == item.id ? 'fas checklist' : 'fas check' }}"
                         text="&#xf00c;" width="35" height="35" (tap)="checklist(item.id)">
