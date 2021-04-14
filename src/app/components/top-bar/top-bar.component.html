@@ -3,6 +3,11 @@
     </ActionItem>
 </ActionBar>
 
+<ActionBar  flat="true" title="Tasks Detail">
+    <NavigationButton android.systemIcon="ic_menu_back" text="Back" [nsRouterLink]="['/']"></NavigationButton>
+</ActionBar>
+
 <ActionBar *ngIf="router.url === '/add'" flat="true" title="Add Tasks">
     <NavigationButton android.systemIcon="ic_menu_back" text="Back" [nsRouterLink]="['/']"></NavigationButton>
 </ActionBar>
+

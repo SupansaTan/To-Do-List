@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute ,Router} from '@angular/router';
 
 import { Task } from "~/app/task";
 import { TaskService } from "../../task.service";
@@ -13,6 +13,7 @@ import { Location} from "@angular/common";
 export class TaskDetailComponent {
     task;
    constructor(private route: ActivatedRoute,
+              private router: Router,
                private taskService: TaskService,
                private location: Location) {}
    ngOnInit() {
