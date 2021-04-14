@@ -27,6 +27,7 @@ export class AddTaskComponent {
     task_photo: Array<string> = [];
     date : Date;
     time : Date;
+    task_notify: boolean;
 
     imagePath: string | undefined;
 
@@ -36,13 +37,14 @@ export class AddTaskComponent {
         this.showButtons = false;
         this.hasImage = false;
         this.task_photo = []
+        this.task_notify = true
     }
 
     public add() {
         let datetime = new Date(this.date.getFullYear(), this.date.getMonth(), this.date.getDate(),
             this.time.getHours(),this.time.getMinutes())
 
-        this.taskService.addTask(this.task_name, this.task_detail, datetime, this.task_photo)
+        this.taskService.addTask(this.task_name, this.task_detail, datetime, this.task_photo, this.task_notify)
         this.location.back()
     }
 

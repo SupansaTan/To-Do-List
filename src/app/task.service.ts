@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as AppSettings from '@nativescript/core/application-settings'
-
+import { LocalNotifications } from '@nativescript/local-notifications';
 import { Task } from './task'
 
 @Injectable({
@@ -31,7 +31,7 @@ export class TaskService {
         return this.tasks[id];
     }
 
-    public addTask(name: string, detail:string, datetime: Date, photoPath: Array<string>){
+    public addTask(name: string, detail:string, datetime:Date, photoPath:Array<string>, notify:boolean){
         let last_id;
 
         /* get id */
@@ -47,11 +47,16 @@ export class TaskService {
               'id': last_id+1,
               'name': name,
               'detail': detail,
-              'date': datetime,
-              'photo': photoPath
+              'due_date': datetime,
+              'photo': photoPath,
+              'notify': notify,
             }
         );
         AppSettings.setString("TaskData", JSON.stringify(this.tasks));
+
+        if(notify){
+            this.setNotify(last_id+1, name, datetime)
+        }
     }
 
     public deleteTask(id:number){
@@ -62,5 +67,27 @@ export class TaskService {
               break;
             }
         }
+    }
+
+    private setNotify(id:number, name:string, datetime:Date){
+        let date_notify = new Date(datetime.getFullYear(), datetime.getMonth(), datetime.getDate()-1,
+        datetime.getHours(), datetime.getMinutes())
+
+        LocalNotifications.schedule([
+            {
+                id: id,
+                title: 'Task Reminder',
+                body: "ครบกำหนดพรุ่งนี้: " + name,
+                at: date_notify,
+                forceShowWhenInForeground: true,
+            },
+        ]).then(
+            (scheduledIds) => {
+                console.log('Notification id(s) scheduled: ' + JSON.stringify(scheduledIds));
+            },
+            (error) => {
+                console.log('scheduling error: ' + error);
+            }
+        );
     }
 }
