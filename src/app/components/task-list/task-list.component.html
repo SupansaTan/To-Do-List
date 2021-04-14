@@ -11,6 +11,7 @@
     <ListView [items]="tasks" class="list-group" separatorColor="transparent" height="100%">
         <ng-template let-item="item" let-i="index">
             <StackLayout>
+<<<<<<< HEAD
                 <GridLayout rows="*,*" columns="*,40" class="list-card" >
                     <Label class="header" row="0" col="0" [text]="item.name" (tap)="toDetail(item.id)"></Label>
                     <Button row="0" col="1" backgroundColor="{{ checklist_id == item.id ? '#38ABFD': '#F1F1F4' }}" 
@@ -19,6 +20,23 @@
                     </Button>
                     <Label class="countdown" row="1" col="0" colSpan="2" [text]="countdown(item.date)"></Label>
                 </GridLayout>
+=======
+                <CardView radius="25" ripple="true">
+                    <GridLayout rows="*,*,*" columns="*,40" class="list-card">
+                        <Label class="header" row="0" col="0" [text]="item.name"></Label>
+                        <Button row="0" col="1" backgroundColor="{{ checklist_id == item.id ? '#38ABFD': '#F1F1F4' }}" 
+                            borderRadius="50" class="{{ checklist_id == item.id ? 'fas checklist' : 'fas check' }}"
+                            text="&#xf00c;" width="35" height="35" (tap)="checklist(item.id)">
+                        </Button>
+                        <Label class="duedate" row="1" col="0" colSpan="2"
+                            [text]="convertDatetime(item.date)" horizontalAlignment="left">
+                        </Label>
+                        <Label class="countdown" row="2" col="0" colSpan="2" 
+                            [text]="countdown(item.date)">
+                        </Label>
+                    </GridLayout>
+                </CardView>
+>>>>>>> 9b93da2e4fa771d286e9796ce3aea171e02d705a
             </StackLayout>
         </ng-template>
     </ListView>

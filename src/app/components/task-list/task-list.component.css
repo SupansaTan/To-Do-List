@@ -4,10 +4,13 @@ ListView {
 }
 
 GridLayout.list-card {
-    margin: 5px;
     padding: 30px;
     border-radius: 25px;
-    background-color: #F2F2F7;
+    background-color: #f5f5ff;
+}
+
+StackLayout {
+    margin-bottom: 30px;
 }
 
 .header {
@@ -19,6 +22,20 @@ GridLayout.list-card {
 .countdown {
     font-size: 15px;
     text-align: right;
+}
+
+CardView {
+    margin: 0px 10px 10px 10px;
+    background-color: #f5f5ff;
+}
+
+.duedate {
+    width: auto;
+    font-size: 13px;
+    border-radius: 50px;
+    border-width: 1;
+    text-align: center;
+    border-color: #38ABFD;
 }
 
 .checklist {

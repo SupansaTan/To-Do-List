@@ -43,9 +43,14 @@
     "@nativescript/datetimepicker": "~2.0.0",
     "@nativescript/imagepicker": "^1.0.2",
     "@nativescript/theme": "~3.0.1",
+<<<<<<< HEAD
     "nativescript-camera": "^4.5.0",
     "nativescript-cardview": "^3.2.0",
     "nativescript-material-cardview": "^3.3.2",
+=======
+    "@nstudio/nativescript-cardview": "^2.0.1",
+    "crypto-ts": "^1.0.2",
+>>>>>>> 9b93da2e4fa771d286e9796ce3aea171e02d705a
     "reflect-metadata": "~0.1.13",
     "rxjs": "~6.6.7",
     "zone.js": "~0.11.4"

@@ -59,6 +59,16 @@ export class AddTaskComponent {
         }
     }
 
+    getRandomString() {
+        // random hash generator for generate file name
+        var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var result = '';
+        for ( var i = 0; i < 16; i++ ) {
+            result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+        }
+        return result;
+    }
+
     takePhoto(): void {
         if (!camera.isAvailable()) {
             throw new Error('Camera not available');
@@ -67,29 +77,24 @@ export class AddTaskComponent {
             flatMap(() => camera.takePicture()),
             flatMap((imageAsset: ImageAsset) => ImageSource.fromAsset(imageAsset)),
             map((imageSource: ImageSource) => {
-                try{
-                    const len_photo = this.task_photo.length+1
-                    const fileName = this.task_name + len_photo + ".jpg";
-                    const photoFilePath = this.createPhotoPath(fileName);
+                // set photo name and path
+                const fileName = this.getRandomString() + ".jpg";
+                const photoFilePath = this.createPhotoPath(fileName);
 
-                    // Save photo in full quality to file
-                    const success: boolean = imageSource.saveToFile(photoFilePath, 'jpg');
-                    if (!success) {
-                        throw new Error('Error during saving photo image to file ' + photoFilePath);
-                    }
-                    else{
-                        // save photo success
-                        this.task_photo.push(photoFilePath)
-                        this.hasImage = true; // set image visible
-                    }
-                    return photoFilePath;
+                // save photo in full quality to file
+                const success: boolean = imageSource.saveToFile(photoFilePath, 'jpg');
+                if (!success) {
+                    throw new Error('Error during saving photo image to file ' + photoFilePath);
                 }
-                catch(e){
-                    // when did not enter task title
-                    return alert('Please entered task title')
-                }
+                return photoFilePath;
             })
-        )
+        ).subscribe(photoFilePath => {
+            this.task_photo.push(photoFilePath)
+            this.hasImage = true; // set image visible
+            console.log('Photofilepath ' + photoFilePath);
+        }, error => {
+            console.log(error);
+        })
     }
 
     public pickPhoto() {
@@ -108,27 +113,21 @@ export class AddTaskComponent {
                     // process the selected image
                     let source = ImageSource.fromAsset(selected)
                     source.then((imageSource: ImageSource) => {
-                        const len_photo = that.task_photo.length+1
+                        // set photo name and path & save it
+                        let fileName = that.getRandomString() + ".jpg";
+                        const photoFilePath = that.createPhotoPath(fileName);
+                        const success: boolean = imageSource.saveToFile(photoFilePath, 'jpg');
 
-                        try {
-                            let fileName = that.task_name + len_photo + ".jpg";
-                            const photoFilePath = that.createPhotoPath(fileName);
-                            const success: boolean = imageSource.saveToFile(photoFilePath, 'jpg');
-
-                            if (!success) {
-                                throw new Error('Error during saving photo image to file ' + photoFilePath);
-                            }
-                            else{
-                                that.imagePath = photoFilePath;
-                                that.task_photo.push(that.imagePath)
-                                that.hasImage = true; // set image visible
-                            }
-                            return photoFilePath;
+                        if (!success) {
+                            throw new Error('Error during saving photo image to file ' + photoFilePath);
                         }
-                        catch (e){
-                            // when did not enter task title
-                            return alert('Please entered task title')
+                        else {
+                            // save successfully
+                            that.imagePath = photoFilePath;
+                            that.task_photo.push(that.imagePath)
+                            that.hasImage = true; // set image visible
                         }
+                        return photoFilePath;
                     })
                 })
             }).catch(function (e) {
@@ -144,12 +143,7 @@ export class AddTaskComponent {
 
         // gets or creates photo folder
         let photoFolderPath;
-        if (this.task_name != ""){
-            photoFolderPath = documentFolders.getFolder(this.task_name);
-        }
-        else{
-            photoFolderPath = documentFolders.getFolder("temp");
-        }
+        photoFolderPath = documentFolders.getFolder('images');
 
         // gets or creates empty file
         const photoFile = photoFolderPath.getFile(fileName);
