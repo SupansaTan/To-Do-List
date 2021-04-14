@@ -21,7 +21,7 @@ export class TaskDetailComponent {
     this.task = this.taskService.getTask(id);
   }
   edit(id){
-    
+    this.router.navigate(['/edit', id ]);
   }
   
 
