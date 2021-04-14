@@ -16,8 +16,13 @@ export class TaskDetailComponent {
                private taskService: TaskService,
                private location: Location) {}
    ngOnInit() {
- 
+    const routeParams = this.route.snapshot.paramMap;
+    const id = Number(routeParams.get('id'));
+    this.task = this.taskService.getTask(id);
   }
-
+  edit(id){
+    
+  }
   
+
 }
