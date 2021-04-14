@@ -1,8 +1,8 @@
-StackLayout {
+.container {
     background-image: linear-gradient(#2974FA, #38ABFD, #43D4FF);
 }
 
-GridLayout {
+.grid-container {
     margin: 50px;
     padding: 40px;
     border-radius: 50px;
@@ -46,6 +46,12 @@ DatePicker {
     font-size: 15px;
     border-radius: 50px;
     visibility: collapsed;
+}
+
+.delete {
+    background-color: #B22222;
+    color: white;
+    border-radius: 50px;
 }
 
 .add.task {
