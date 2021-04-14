@@ -28,7 +28,7 @@ export class TaskService {
     }
 
     public getTask(id: number){
-        return this.tasks[id];
+        return this.tasks.filter(x => x.id == id)[0];
     }
 
     public addTask(name: string, detail:string, datetime: Date, photoPath: Array<string>){
