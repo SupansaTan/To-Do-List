@@ -12,6 +12,8 @@ import { TaskListComponent } from './components/task-list/task-list.component'
 import { TaskDetailComponent } from './pages/task-detail/task-detail.component'
 import { AddTaskComponent } from './pages/add-task/add-task.component'
 import { EditTaskComponent } from './pages/edit-task/edit-task.component'
+import { CardView } from '@nstudio/nativescript-cardview';
+registerElement('CardView', () => CardView);
 
 import { TaskService } from './task.service'
 import { DatePipe } from '@angular/common'
