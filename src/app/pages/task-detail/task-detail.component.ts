@@ -25,7 +25,8 @@ export class TaskDetailComponent {
     this.router.navigate(['/edit', id ]);
   }
   delete(id){
-    this.taskService.deleteTask(id)
+    this.taskService.deleteTask(id);
+    this.location.back();
   }
 
 }
