@@ -2,7 +2,7 @@
 <ScrollView>
 <StackLayout class="container">
 
-    <GridLayout class="grid-container" rows="auto,auto,auto,auto,auto,auto,auto,auto" columns="*,*">
+    <GridLayout class="grid-container" rows="auto,auto,auto,auto,auto,auto,auto,auto,auto" columns="*,*">
         <Label row="0" col="0" colspan="2" text="Title"></Label>
         <TextField row="1" col="0" colspan="2" required hint="task name..." [(ngModel)]="task_name" fontSize="16px"></TextField>
         
@@ -38,6 +38,11 @@
             pickerOkText="OK" pickerCancelText="Cancel" pickerTitleTime="Select time" 
             timeFormat="HH:mm">
         </TimePickerField>
+
+        <DockLayout stretchLastChild="true" row="9" col="0" colSpan="2">
+            <Label dock="left" text="Notification"></Label>
+            <Switch dock="right" [(ngModel)]="task_notify"></Switch>
+        </DockLayout>
     </GridLayout>
 
     <Button class="add task" text="Save" (tap)="add()"></Button>

@@ -19,10 +19,10 @@
                             text="&#xf00c;" width="35" height="35" (tap)="checklist(item.id)">
                         </Button>
                         <Label class="duedate" row="1" col="0" colSpan="2"
-                            [text]="convertDatetime(item.date)" horizontalAlignment="left">
+                            [text]="convertDatetime(item.due_date)" horizontalAlignment="left">
                         </Label>
                         <Label class="countdown" row="2" col="0" colSpan="2" 
-                            [text]="countdown(item.date)">
+                            [text]="countdown(item.due_date)">
                         </Label>
                     </GridLayout>
                 </CardView>

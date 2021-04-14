@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { NativeScriptDateTimePickerModule } from "@nativescript/datetimepicker/angular";
 import { registerElement } from '@nativescript/angular';
+import { CardView } from '@nstudio/nativescript-cardview';
+registerElement('CardView', () => CardView);
 
 import { HomeComponent } from './pages/home/home.component'
 import { TopBarComponent } from './components/top-bar/top-bar.component'
