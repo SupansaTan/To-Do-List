@@ -78,6 +78,7 @@ export class TaskService {
                 id: id,
                 title: 'Task Reminder',
                 body: "ครบกำหนดพรุ่งนี้: " + name,
+                badge: 1,
                 at: date_notify,
                 forceShowWhenInForeground: true,
             },

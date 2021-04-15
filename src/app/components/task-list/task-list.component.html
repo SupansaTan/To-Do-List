@@ -18,10 +18,10 @@
                             borderRadius="50" class="{{ checklist_id == item.id ? 'fas checklist' : 'fas check' }}"
                             text="&#xf00c;" width="35" height="35" (tap)="checklist(item.id)">
                         </Button>
-                        <Label class="duedate" row="1" col="0" colSpan="2"
+                        <Label class="duedate" row="1" col="0" colSpan="2" (tap)="toDetail(item.id)"
                             [text]="convertDatetime(item.due_date)" horizontalAlignment="left">
                         </Label>
-                        <Label class="countdown" row="2" col="0" colSpan="2" 
+                        <Label class="countdown" row="2" col="0" colSpan="2" (tap)="toDetail(item.id)"
                             [text]="countdown(item.due_date)">
                         </Label>
                     </GridLayout>

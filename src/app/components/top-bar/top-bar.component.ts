@@ -16,7 +16,7 @@ export class TopBarComponent {
     back_to_homepage(){
         const confirmOptions = {
             title: 'Are you sure?',
-            message: 'The task will not be save.',
+            message: 'The task will not save.',
             okButtonText: 'Yes',
             cancelButtonText: 'No',
         }

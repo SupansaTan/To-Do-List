@@ -14,17 +14,14 @@ import { Router } from "@angular/router";
 
 export class TaskListComponent {
     checklist_id : number;
-    approach_deadline: boolean;
 
     public tasks : Array<any>;
 
     public constructor(private router:Router,private taskService : TaskService, public datepipe: DatePipe, public page: Page) { 
         this.tasks = this.taskService.getTasks();
-        this.approach_deadline = false;
     }
 
     public countdown(toDate : Date) {
-        this.approach_deadline = false;
         var now = new Date();
 
         /* when getting task data from app settings date will be string type 
@@ -80,6 +77,7 @@ export class TaskListComponent {
             this.checklist_id = undefined
         }, 300);
     }
+    
     toDetail(id) {
         this.router.navigate(['/detail', id ]);
     }
