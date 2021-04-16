@@ -20,6 +20,7 @@ export class TaskService {
         }
         else {
             this.tasks = JSON.parse(AppSettings.getString("TaskData")); // get task data that store in app settings
+            this.tasks.forEach((task) => {task.due_date = new Date(Date.parse(task.due_date))}) // convert from string to Date type
         }
     }
 
@@ -35,12 +36,7 @@ export class TaskService {
         let last_id;
 
         /* get id */
-        if (this.tasks.length == 0){
-            last_id = 0
-        }
-        else {
-            last_id = this.tasks[this.tasks.length-1].id
-        }
+        this.tasks.length > 0 ? last_id=this.tasks[this.tasks.length-1].id : last_id=0
 
         this.tasks.push(
             {
@@ -52,6 +48,7 @@ export class TaskService {
               'notify': notify,
             }
         );
+        this.tasks.sort((a, b) => a.due_date < b.due_date ? -1 : a.due_date > b.due_date ? 1 : 0) // sort tasks by due date
         AppSettings.setString("TaskData", JSON.stringify(this.tasks));
 
         if(notify){
@@ -63,6 +60,7 @@ export class TaskService {
         for(let i = 0; i < this.tasks.length; i++) {
             if(this.tasks[i].id == id) {
               this.tasks.splice(i, 1);
+              this.tasks.sort((a, b) => a.due_date < b.due_date ? -1 : a.due_date > b.due_date ? 1 : 0) // sort tasks by due date
               AppSettings.setString("TaskData", JSON.stringify(this.tasks))
               break;
             }
@@ -79,6 +77,7 @@ export class TaskService {
                 title: 'Task Reminder',
                 body: "ครบกำหนดพรุ่งนี้: " + name,
                 badge: 1,
+                icon: 'res//logo',
                 at: date_notify,
                 forceShowWhenInForeground: true,
             },

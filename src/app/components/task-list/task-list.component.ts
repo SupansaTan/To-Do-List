@@ -3,8 +3,8 @@ import { TaskService } from "~/app/task.service";
 import { Page } from "@nativescript/core";
 import { Location } from '@angular/common';
 import { DatePipe } from '@angular/common'
-import { Dialogs } from '@nativescript/core'
 import { Router } from "@angular/router";
+
 @Component ({
     selector: "task-list",
     templateUrl: "./task-list.component.html",
@@ -22,25 +22,17 @@ export class TaskListComponent {
     }
 
     public countdown(toDate : Date) {
-        var now = new Date();
+        let now = new Date();
+        let difference = toDate.getTime() - now.getTime(); // time difference in milliseconds
 
-        /* when getting task data from app settings date will be string type 
-           that will change to Date type */
-        if(typeof toDate === "string"){
-            toDate = new Date(Date.parse(toDate));
-        }
-        
-        var difference = toDate.getTime() - now.getTime(); // time difference in milliseconds
-
-        var seconds = Math.trunc(difference / 1000);
-        var mins = Math.trunc(seconds / 60); // differences in minutes
-        var hours = Math.trunc(mins / 60);  // difference in hours
-        var days = Math.trunc(hours / 24);  // difference in days
+        let seconds = Math.trunc(difference / 1000);
+        let mins = Math.trunc(seconds / 60); // differences in minutes
+        let hours = Math.trunc(mins / 60);  // difference in hours
+        let days = Math.trunc(hours / 24);  // difference in days
 
         let hour = hours % 24;
         let min  = mins % 60;
-
-        // print seconds
+        
         return this.formatString('Countdown : {0} {1} {2}', this.pluralize(days,'day'),
             this.pluralize(hour,'hour'),this.pluralize(min,'min'))
     }

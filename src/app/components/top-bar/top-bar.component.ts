@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { Router } from '@angular/router';
 import { Location } from '@angular/common'
 import { Dialogs } from '@nativescript/core'
@@ -12,7 +12,7 @@ import { Dialogs } from '@nativescript/core'
 export class TopBarComponent {
 
     constructor(public router: Router, public location: Location) { }
-    
+
     back_to_homepage(){
         const confirmOptions = {
             title: 'Are you sure?',
