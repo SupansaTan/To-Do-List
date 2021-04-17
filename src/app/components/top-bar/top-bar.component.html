@@ -5,6 +5,8 @@
 
 <ActionBar  flat="true" title="Tasks Detail">
     <NavigationButton android.systemIcon="ic_menu_back" text="Back" [nsRouterLink]="['/']"></NavigationButton>
+    <ActionItem android.systemIcon="ic_menu_edit" ios.position="right"(tap)="edit(task.id)"></ActionItem>
+    <ActionItem android.systemIcon="ic_menu_delete" ios.position="right"(tap)="delete(task.id)"></ActionItem>
 </ActionBar>
 
 <ActionBar *ngIf="router.url === '/add'" flat="true" title="Add Tasks">

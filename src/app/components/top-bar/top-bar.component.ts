@@ -1,7 +1,8 @@
 import { Component } from "@angular/core";
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common'
 import { Dialogs } from '@nativescript/core'
+import { TaskService } from "../../task.service";
 
 @Component ({
     selector: "top-bar",
@@ -10,10 +11,19 @@ import { Dialogs } from '@nativescript/core'
 })
 
 export class TopBarComponent {
-
-    constructor(public router: Router, public location: Location) { }
-
+    task;
+    constructor(public route: ActivatedRoute,
+                public router: Router, 
+                public location: Location,
+                public taskService: TaskService) { }
+    
+    ngOnInit() {
+    const routeParams = this.route.snapshot.paramMap;
+    const id = Number(routeParams.get('id'));
+    this.task = this.taskService.getTask(id);
+    }
     back_to_homepage(){
+        
         const confirmOptions = {
             title: 'Are you sure?',
             message: 'The task will not save.',
@@ -26,5 +36,13 @@ export class TopBarComponent {
                 this.location.back()
             }
         })
+    }
+    
+    edit(id){
+    this.router.navigate(['/edit', id ]);
+    }
+    delete(id){
+        this.taskService.deleteTask(id);
+        this.location.back();
     }
 }
