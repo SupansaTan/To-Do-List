@@ -7,11 +7,10 @@ import { Location} from "@angular/common";
 @Component ({
     selector: "TaskDetail",
     templateUrl: "./task-detail.component.html",
+    styleUrls: ['./task-detail.component.css'],
 })
-
 export class TaskDetailComponent {
     task;
-    hasImage : boolean;
    constructor(private route: ActivatedRoute,
               private router: Router,
                private taskService: TaskService,
@@ -28,5 +27,4 @@ export class TaskDetailComponent {
     this.taskService.deleteTask(id);
     this.location.back();
   }
-
 }
