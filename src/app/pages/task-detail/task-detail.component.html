@@ -1,17 +1,24 @@
 <top-bar></top-bar>
-<StackLayout>
-    <Label text="Task Detail" textAlignment="center"></Label>
-    <Label [text]="'Name: '+task.name"></Label>
-    <label [text]="'Id: '+task.id"></label>
-    <label *ngIf="task.detail" [text]="'Detail: '+task.detail"></label>
-    <label [text]="task.due_date|date:'d/MMM/yy H:m'"></label>
-    <ScrollView >
-        <StackLayout  *ngIf="task.photo">
-            <GridLayout *ngFor="let photo of task.photo" rows="*" columns="auto">
-                <CardView margin="5" elevation="15" radius="25">
-                    <Image row="0" col="0" [src]="photo" height="200" width="auto"></Image>
-                </CardView>
-            </GridLayout>
-        </StackLayout>
-    </ScrollView>
+<StackLayout class="container">
+    <GridLayout class="grid-container" rows="auto,auto,auto,auto" columns="*,auto">
+        <Label row="0" col="0" colSpan="2" [text]="'&#xf0ae;  '+task.name" class="fas title" textAlignment="center"></Label>
+
+        <label row="1" col="0" text="Due Date" class="topic"></label>
+        <label row="1" col="1" [text]="task.due_date|date:'d/MM/yyyy HH:mm'" class="content"></label>
+
+        <label row="2" col="0" colSpan="2" text="About" class="topic" *ngIf="task.photo.length>0 || task.detail"></label>
+        <GridLayout row="3" col="0" colSpan="2" rows="auto,auto" columns="*" class="about-container">
+            <label row="0" col="0" *ngIf="task.detail" [text]="task.detail" class="content"></label>
+
+            <ScrollView row="1" col="0" orientation="horizontal">
+                <StackLayout orientation="horizontal" *ngIf="task.photo">
+                    <GridLayout *ngFor="let photo of task.photo" rows="*" columns="auto">
+                        <CardView margin="5" elevation="15" radius="25">
+                            <Image row="0" col="0" [src]="photo" height="200" width="auto"></Image>
+                        </CardView>
+                    </GridLayout>
+                </StackLayout>
+            </ScrollView>
+        </GridLayout>
+    </GridLayout>
 </StackLayout>

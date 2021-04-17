@@ -1,5 +1,8 @@
 .container {
-    background-image: linear-gradient(#2974FA, #38ABFD, #43D4FF);
+    background-image: url('~/app/images/background-bubble.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }
 
 .grid-container {
@@ -57,7 +60,7 @@ DatePicker {
 .add.task {
     height: 8%;
     margin: 0px 50px 50px 50px;
-    background-color: #2974FA;
+    background-color: #1d62cf;
     color: white;
     border-radius: 50px;
     font-size: 20px;

@@ -12,16 +12,16 @@
         <ng-template let-item="item" let-i="index">
             <StackLayout>
                 <CardView radius="25" ripple="true">
-                    <GridLayout rows="*,*,*" columns="*,40" class="list-card">
-                        <Label class="header" row="0" col="0" [text]="item.name" (tap)="toDetail(item.id)"></Label>
+                    <GridLayout rows="*,*,*" columns="*,40" class="list-card" (tap)="toDetail(item.id)">
+                        <Label class="header" row="0" col="0" [text]="item.name"></Label>
                         <Button row="0" col="1" backgroundColor="{{ checklist_id == item.id ? '#38ABFD': '#F1F1F4' }}" 
                             borderRadius="50" class="{{ checklist_id == item.id ? 'fas checklist' : 'fas check' }}"
                             text="&#xf00c;" width="35" height="35" (tap)="checklist(item.id)">
                         </Button>
-                        <Label class="duedate" row="1" col="0" colSpan="2" (tap)="toDetail(item.id)"
+                        <Label class="duedate" row="1" col="0" colSpan="2"
                             [text]="convertDatetime(item.due_date)" horizontalAlignment="left">
                         </Label>
-                        <Label class="countdown" row="2" col="0" colSpan="2" (tap)="toDetail(item.id)"
+                        <Label class="countdown" row="2" col="0" colSpan="2"
                             [text]="countdown(item.due_date)">
                         </Label>
                     </GridLayout>

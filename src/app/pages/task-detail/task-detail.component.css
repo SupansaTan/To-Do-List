@@ -1,8 +1,38 @@
 Label {
     margin: 20px;
+}
+
+.container {
+    background-image: url('~/app/images/background-bubble.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.grid-container {
+    margin: 30px 50px 50px 50px;
+    padding: 40px;
+    border-radius: 50px;
+    background-color: #F2F2F7;
+    height: auto;
+}
+
+.about-container {
+    margin: 0px 10px 0px 30px;
+}
+
+.title {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.topic {
     font-size: 20px;
     font-weight: 500;
 }
 
-
-
+.content {
+    font-size: 18px;
+    font-weight: 500;
+    color: #1872b3;
+}
