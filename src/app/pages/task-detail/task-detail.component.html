@@ -3,8 +3,17 @@
     <Label text="Task Detail" textAlignment="center"></Label>
     <Label [text]="'name: '+task.name"></Label>
     <label [text]="'id: '+task.id"></label>
-    <Label [text]="'detail: '+task.detail"></Label>
-    <label [text]="'date: '+task.date"></label>
+    <label *ngIf="task.detail" [text]="'detail: '+task.detail"></label>
+    <label [text]="'date: '+task.due_date"></label>
+    <ScrollView >
+        <StackLayout  *ngIf="task.photo">
+            <GridLayout *ngFor="let photo of task.photo" rows="*" columns="auto">
+                <CardView margin="5" elevation="15" radius="25">
+                    <Image row="0" col="0" [src]="photo" height="200" width="auto"></Image>
+                </CardView>
+            </GridLayout>
+        </StackLayout>
+    </ScrollView>
     <Button text="edit"(tap)=edit(task.id)></Button>
     <Button text="delete"(tap)=delete(task.id)></Button>
 </StackLayout>

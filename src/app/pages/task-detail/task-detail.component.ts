@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute ,Router} from '@angular/router';
-
 import { Task } from "~/app/task";
 import { TaskService } from "../../task.service";
 import { Location} from "@angular/common";
@@ -12,6 +11,7 @@ import { Location} from "@angular/common";
 
 export class TaskDetailComponent {
     task;
+    hasImage : boolean;
    constructor(private route: ActivatedRoute,
               private router: Router,
                private taskService: TaskService,
