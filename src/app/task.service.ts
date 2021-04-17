@@ -56,6 +56,25 @@ export class TaskService {
         }
     }
 
+    public editTask(id:number, name: string, detail:string, datetime:Date, photoPath:Array<string>, notify:boolean){
+        this.tasks[id] = {
+            'id': id,
+            'name': name,
+            'detail': detail,
+            'due_date': datetime,
+            'photo': photoPath,
+            'notify': notify,
+        }
+        this.tasks.sort((a, b) => a.due_date < b.due_date ? -1 : a.due_date > b.due_date ? 1 : 0) // sort tasks by due date
+        AppSettings.setString("TaskData", JSON.stringify(this.tasks));
+
+        /* set notify */
+        let now = new Date()
+        if(notify && datetime > now){
+            this.setNotify(id, name, datetime)
+        }
+    }
+
     public deleteTask(id:number){
         for(let i = 0; i < this.tasks.length; i++) {
             if(this.tasks[i].id == id) {
