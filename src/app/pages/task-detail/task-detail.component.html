@@ -14,7 +14,7 @@
                 <StackLayout orientation="horizontal" *ngIf="task.photo">
                     <GridLayout *ngFor="let photo of task.photo" rows="*" columns="auto">
                         <CardView margin="5" elevation="15" radius="25">
-                            <Image row="0" col="0" [src]="photo" height="200" width="auto"></Image>
+                            <Image row="0" col="0" [src]="photo" height="200" width="auto" (tap)="photoViewer(photo)"></Image>
                         </CardView>
                     </GridLayout>
                 </StackLayout>

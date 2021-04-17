@@ -8,6 +8,7 @@ import { ImageSource, knownFolders} from '@nativescript/core';
 import { flatMap, map } from 'rxjs/operators';
 import { from } from 'rxjs';
 import * as imagepicker from "@nativescript/imagepicker";
+import { Router } from "@angular/router";
 
 @Component ({
     selector: "add-task",
@@ -31,7 +32,7 @@ export class AddTaskComponent {
 
     imagePath: string | undefined;
 
-    public constructor(private taskService: TaskService,public datepipe: DatePipe, public location: Location) {
+    public constructor(private taskService: TaskService,public datepipe: DatePipe, public location: Location, public router: Router) {
         this.date = new Date();
         this.time = new Date();
         this.showButtons = false;
@@ -155,4 +156,7 @@ export class AddTaskComponent {
         return photoFile.path;
     }
 
+    public photoViewer(src: string){
+        this.router.navigate(['/photo', src ]);
+    }
 }

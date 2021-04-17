@@ -14,5 +14,9 @@
 </ActionBar>
 
 <ActionBar *ngIf="router.url === '/edit/'+id" flat="true" title="Edit Task">
-    <NavigationButton android.systemIcon="ic_menu_back" text="Back" (tap)="back_to_detail()"></NavigationButton>
+    <NavigationButton android.systemIcon="ic_menu_back" text="Back" (tap)="back_previous_page()"></NavigationButton>
+</ActionBar>
+
+<ActionBar *ngIf="image_path" flat="true" [title]="title">
+    <NavigationButton android.systemIcon="ic_menu_back" text="Back" (tap)="back_previous_page()"></NavigationButton>
 </ActionBar>

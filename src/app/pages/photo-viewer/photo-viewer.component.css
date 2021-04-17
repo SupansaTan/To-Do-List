@@ -1,0 +1,6 @@
+GridLayout {
+    background-image: url('~/app/images/background-bubble.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
