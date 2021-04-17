@@ -12,16 +12,19 @@ import { TaskService } from "../../task.service";
 
 export class TopBarComponent {
     task;
+    id : number;
+
     constructor(public route: ActivatedRoute,
                 public router: Router, 
                 public location: Location,
                 public taskService: TaskService) { }
     
     ngOnInit() {
-    const routeParams = this.route.snapshot.paramMap;
-    const id = Number(routeParams.get('id'));
-    this.task = this.taskService.getTask(id);
+        const routeParams = this.route.snapshot.paramMap;
+        this.id = Number(routeParams.get('id'));
+        this.task = this.taskService.getTask(this.id);
     }
+
     back_to_homepage(){
         
         const confirmOptions = {
@@ -37,10 +40,15 @@ export class TopBarComponent {
             }
         })
     }
+
+    back_to_detail(){
+        this.location.back()
+    }
     
     edit(id){
     this.router.navigate(['/edit', id ]);
     }
+
     delete(id){
         this.taskService.deleteTask(id);
         this.location.back();
