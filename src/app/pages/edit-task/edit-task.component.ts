@@ -12,6 +12,14 @@ import { Location} from "@angular/common";
 
 export class EditTaskComponent {
 
-    constructor() { }
+    task;
+    constructor(public route: ActivatedRoute,
+               public taskService: TaskService,
+               public location: Location) {}
+    ngOnInit() {
+     const routeParams = this.route.snapshot.paramMap;
+     const id = Number(routeParams.get('id'));
+     this.task = this.taskService.getTask(id);
 
+}
 }
