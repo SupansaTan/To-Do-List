@@ -1,5 +1,5 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute ,Router} from '@angular/router';
+import { Component} from "@angular/core";
+import { ActivatedRoute} from '@angular/router';
 import { Task } from "~/app/task";
 import { TaskService } from "../../task.service";
 import { Location} from "@angular/common";
@@ -11,20 +11,12 @@ import { Location} from "@angular/common";
 })
 export class TaskDetailComponent {
     task;
-   constructor(private route: ActivatedRoute,
-              private router: Router,
-               private taskService: TaskService,
-               private location: Location) {}
+   constructor(public route: ActivatedRoute,
+              public taskService: TaskService,
+              public location: Location) {}
    ngOnInit() {
     const routeParams = this.route.snapshot.paramMap;
     const id = Number(routeParams.get('id'));
     this.task = this.taskService.getTask(id);
-  }
-  edit(id){
-    this.router.navigate(['/edit', id ]);
-  }
-  delete(id){
-    this.taskService.deleteTask(id);
-    this.location.back();
   }
 }

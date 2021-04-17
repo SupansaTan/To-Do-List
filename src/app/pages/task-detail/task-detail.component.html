@@ -1,10 +1,10 @@
 <top-bar></top-bar>
-<StackLayout class="container">
+<StackLayout>
     <Label text="Task Detail" textAlignment="center"></Label>
-    <Label [text]="'name: '+task.name"></Label>
-    <label [text]="'id: '+task.id"></label>
-    <label *ngIf="task.detail" [text]="'detail: '+task.detail"></label>
-    <label [text]="'date: '+task.due_date|date:'d/MMM/yy H:m'"></label>
+    <Label [text]="'Name: '+task.name"></Label>
+    <label [text]="'Id: '+task.id"></label>
+    <label *ngIf="task.detail" [text]="'Detail: '+task.detail"></label>
+    <label [text]="task.due_date|date:'d/MMM/yy H:m'"></label>
     <ScrollView >
         <StackLayout  *ngIf="task.photo">
             <GridLayout *ngFor="let photo of task.photo" rows="*" columns="auto">
@@ -14,6 +14,4 @@
             </GridLayout>
         </StackLayout>
     </ScrollView>
-    <Button text="edit"(tap)=edit(task.id)></Button>
-    <Button text="delete"(tap)=delete(task.id)></Button>
 </StackLayout>
