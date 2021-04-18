@@ -13,5 +13,11 @@
 2. Change Directory `cd To-Do-List`
 3. Start `ns run android`
 
-## App Flow
-![App Flow](app_flow.png "AppFlow")
+### iOS
+
+1. Clone ```git clone https://github.com/SupansaTan/To-Do-List.git```
+2. Change Directory `cd To-Do-List`
+3. Start `ns run ios`
+
+## Overview
+![Overview](overview.png "AppOverview")
