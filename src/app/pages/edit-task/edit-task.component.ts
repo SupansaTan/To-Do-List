@@ -17,8 +17,9 @@ import { Router } from "@angular/router";
 })
 
 export class EditTaskComponent {
-
     task;
+    date: Date;
+    time: Date;
     task_name: string;
     task_detail: string;
     task_date: Date;
@@ -30,17 +31,21 @@ export class EditTaskComponent {
     constructor(public route: ActivatedRoute,
                public taskService: TaskService,
                public location: Location,
-               public router: Router) {}
+               public router: Router) {
+                const routeParams = this.route.snapshot.paramMap;
+                const id = Number(routeParams.get('id'));
+                this.task = this.taskService.getTask(id);
+                this.task_name = this.task.name
+                this.task_detail = this.task.detail
+                this.task_date = this.task.due_date
+                this.task_photo = this.task.photo
+                this.task_notify = this.task.notify
+                this.date = this.task_date
+                this.time = this.task_date
+               }
     
     ngOnInit() {
-        const routeParams = this.route.snapshot.paramMap;
-        const id = Number(routeParams.get('id'));
-        this.task = this.taskService.getTask(id);
-        this.task_name=this.task.name
-        this.task_detail=this.task.detail
-        this.task_date=this.task.due_date
-        this.task_photo=this.task.photo
-        this.task_notify=this.task.notify
+
     }
 
     public edit(){ 
