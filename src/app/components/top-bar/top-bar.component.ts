@@ -58,7 +58,18 @@ export class TopBarComponent {
     }
 
     delete(id){
-        this.taskService.deleteTask(id);
-        this.location.back();
+        const confirmOptions = {
+            title: 'Are you sure?',
+            message: 'Are you sure want to delete',
+            okButtonText: 'Yes',
+            cancelButtonText: 'No',
+        }
+        
+        Dialogs.confirm(confirmOptions).then(result => {
+            if(result){
+                this.taskService.deleteTask(id);
+                this.location.back()
+            }
+        })
     }
 }
