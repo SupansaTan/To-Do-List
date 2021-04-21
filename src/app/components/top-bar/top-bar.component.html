@@ -1,4 +1,5 @@
 <ActionBar *ngIf="router.url === '/'" flat="true" title="To-Do List">
+    <ActionItem android.systemIcon="ic_menu_help" ios.position="left" [nsRouterLink]="['/about']"></ActionItem>
     <ActionItem ios.systemIcon="4" android.systemIcon="ic_menu_add" ios.position="right" [nsRouterLink]="['/add']">
     </ActionItem>
 </ActionBar>
