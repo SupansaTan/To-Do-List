@@ -10,7 +10,6 @@
 <ActionBar *ngIf="router.url === '/detail/'+id" flat="true" title="Detail">
     <NavigationButton android.systemIcon="ic_menu_back" text="Back" [nsRouterLink]="['/']"></NavigationButton>
     <ActionItem android.systemIcon="ic_menu_edit" ios.position="right"(tap)="edit(task.id)"></ActionItem>
-    <ActionItem android.systemIcon="ic_menu_delete" ios.position="right"(tap)="delete(task.id)"></ActionItem>
 </ActionBar>
 
 <!-- create task -->
@@ -21,6 +20,8 @@
 <!-- edit task -->
 <ActionBar *ngIf="router.url === '/edit/'+id" flat="true" title="Edit Task">
     <NavigationButton android.systemIcon="ic_menu_back" text="Back" (tap)="back_previous_page()"></NavigationButton>
+    <ActionItem android.systemIcon="ic_menu_save" ios.position="right"></ActionItem>
+    <ActionItem android.systemIcon="ic_menu_delete" ios.position="right" (tap)="delete(id)"></ActionItem>
 </ActionBar>
 
 <!-- view photo -->

@@ -1,4 +1,5 @@
-import { Component, AfterViewInit, ChangeDetectorRef } from "@angular/core";
+import { Component, AfterViewInit, ChangeDetectorRef, ViewChild , ElementRef} from "@angular/core";
+import { Subscription, interval } from 'rxjs';
 import { TaskService } from "~/app/task.service";
 import { Page } from "@nativescript/core";
 import { Location } from '@angular/common';
@@ -9,17 +10,24 @@ import { Router } from "@angular/router";
     selector: "task-list",
     templateUrl: "./task-list.component.html",
     styleUrls: ["./task-list.component.css"],
-    moduleId: module.id,
 })
 
 export class TaskListComponent implements AfterViewInit {
     checklist_id : number;
 
     public tasks : Array<any>;
+    private updateSubscription: Subscription;
 
     public constructor(private router:Router,private taskService : TaskService, 
-        public datepipe: DatePipe, public page: Page, private cdRef: ChangeDetectorRef) { 
+        public datepipe: DatePipe, public page: Page, private cdRef: ChangeDetectorRef,) { 
         this.tasks = this.taskService.getTasks();
+    }
+
+    ngOnInit() {
+        // auto refresh every one second
+        this.updateSubscription = interval(1000).subscribe(
+            (val) => { this.tasks = this.taskService.getTasks();}
+        );
     }
 
     ngAfterViewInit() {

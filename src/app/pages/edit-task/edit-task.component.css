@@ -28,3 +28,13 @@ Label {
     border-radius: 50px;
     visibility: collapsed;
 }
+
+.save {
+    height: 8%;
+    margin: 0px 50px 50px 50px;
+    background-color: #1d62cf;
+    color: white;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: 500;
+}
