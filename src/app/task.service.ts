@@ -54,6 +54,7 @@ export class TaskService {
             }
         );
         this.tasks.sort((a, b) => a.due_date < b.due_date ? -1 : a.due_date > b.due_date ? 1 : 0) // sort tasks by due date
+        this.tasks.map(task => task.id = this.tasks.indexOf(task)) // reorder id
         AppSettings.setString("TaskData", JSON.stringify(this.tasks));
 
         if(notify){
@@ -72,6 +73,7 @@ export class TaskService {
             'overdue': overdue,
         }
         this.tasks.sort((a, b) => a.due_date < b.due_date ? -1 : a.due_date > b.due_date ? 1 : 0) // sort tasks by due date
+        this.tasks.map(task => task.id = this.tasks.indexOf(task)) // reorder id
         AppSettings.setString("TaskData", JSON.stringify(this.tasks));
 
         /* set notify */

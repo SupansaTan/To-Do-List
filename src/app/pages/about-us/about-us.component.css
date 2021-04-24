@@ -45,10 +45,6 @@ StackLayout {
     margin: 5px 20px 5px 40px;
 }
 
-ListView {
-    background-color: beige;
-}
-
 .list-group {
     height: auto;
 }
