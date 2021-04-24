@@ -6,6 +6,7 @@ import { AppComponent } from './app.component'
 import { NativeScriptDateTimePickerModule } from "@nativescript/datetimepicker/angular";
 import { registerElement } from '@nativescript/angular';
 import { CardView } from '@nstudio/nativescript-cardview';
+import { NativeScriptMaterialBottomSheetModule } from "@nativescript-community/ui-material-bottomsheet/angular";
 registerElement('CardView', () => CardView);
 registerElement('ImageZoom', () => require('@happones/nativescript-image-zoom').ImageZoom);
 
@@ -24,7 +25,13 @@ import { DatePipe } from '@angular/common'
 
 @NgModule({
   bootstrap: [AppComponent],
-  imports: [NativeScriptModule, AppRoutingModule, NativeScriptFormsModule, NativeScriptDateTimePickerModule ],
+  imports: [
+    NativeScriptModule,
+    AppRoutingModule, 
+    NativeScriptFormsModule, 
+    NativeScriptDateTimePickerModule,
+    NativeScriptMaterialBottomSheetModule,
+  ],
   declarations: [
     AppComponent, 
     HomeComponent, 

@@ -49,7 +49,13 @@ export class EditTaskComponent {
     }
 
     public edit(){ 
-        this.taskService.editTask(this.task.id,this.task_name, this.task_detail, this.task_date, this.task_photo, this.task_notify)
+        let overdue : boolean
+        let now = new Date()
+        let datetime = new Date(this.date.getFullYear(), this.date.getMonth(), this.date.getDate(),
+            this.time.getHours(),this.time.getMinutes())
+        datetime < now ? overdue=true : overdue=false
+
+        this.taskService.editTask(this.task.id,this.task_name, this.task_detail, datetime, this.task_photo, this.task_notify, overdue)
     }
     
     public getRandomString() {

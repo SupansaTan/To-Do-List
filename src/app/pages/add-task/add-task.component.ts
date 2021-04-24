@@ -42,13 +42,15 @@ export class AddTaskComponent {
     }
 
     public add() {
+        let overdue : boolean
+        let now = new Date()
         let datetime = new Date(this.date.getFullYear(), this.date.getMonth(), this.date.getDate(),
             this.time.getHours(),this.time.getMinutes())
-
-        this.taskService.addTask(this.task_name, this.task_detail, datetime, this.task_photo, this.task_notify)
+        datetime < now ? overdue=true : overdue=false // check datetime is overdue or not
+        this.taskService.addTask(this.task_name, this.task_detail, datetime, this.task_photo, this.task_notify, overdue)
         this.location.back()
     }
-
+ 
     public toggleVisible(){
         this.showButtons = !this.showButtons;
     }
@@ -94,7 +96,6 @@ export class AddTaskComponent {
         ).subscribe(photoFilePath => {
             this.task_photo.push(photoFilePath)
             this.hasImage = true; // set image visible
-            console.log('Photofilepath ' + photoFilePath);
         }, error => {
             console.log(error);
         })

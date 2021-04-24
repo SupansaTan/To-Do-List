@@ -22,6 +22,14 @@ StackLayout {
 .countdown {
     font-size: 15px;
     text-align: right;
+    font-weight: 500;
+}
+
+.overdue {
+    font-size: 15px;
+    text-align: right;
+    font-weight: 500;
+    color: rgb(165, 34, 34);
 }
 
 CardView {

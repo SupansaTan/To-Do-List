@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, AfterViewInit, ChangeDetectorRef } from "@angular/core";
 import { TaskService } from "~/app/task.service";
 import { Page } from "@nativescript/core";
 import { Location } from '@angular/common';
@@ -12,16 +12,21 @@ import { Router } from "@angular/router";
     moduleId: module.id,
 })
 
-export class TaskListComponent {
+export class TaskListComponent implements AfterViewInit {
     checklist_id : number;
 
     public tasks : Array<any>;
 
-    public constructor(private router:Router,private taskService : TaskService, public datepipe: DatePipe, public page: Page) { 
+    public constructor(private router:Router,private taskService : TaskService, 
+        public datepipe: DatePipe, public page: Page, private cdRef: ChangeDetectorRef) { 
         this.tasks = this.taskService.getTasks();
     }
 
-    public countdown(toDate : Date) {
+    ngAfterViewInit() {
+        this.cdRef.detectChanges(); 
+    }
+
+    public countdown(toDate : Date, id: number) {
         let now = new Date();
         let difference = toDate.getTime() - now.getTime(); // time difference in milliseconds
 
@@ -33,8 +38,20 @@ export class TaskListComponent {
         let hour = hours % 24;
         let min  = mins % 60;
         
-        return this.formatString('Countdown : {0} {1} {2}', this.pluralize(days,'day'),
+        if(toDate >= now){
+            return this.formatString('Countdown : {0} {1} {2}', this.pluralize(days,'day'),
             this.pluralize(hour,'hour'),this.pluralize(min,'min'))
+        }
+        else{
+            // overdue date
+            try {
+                this.taskService.setOverdue(id, true) 
+            }
+            finally {
+                return this.formatString('Countdown : {0} {1} {2} overdue', this.pluralize(Math.abs(days),'day'),
+                this.pluralize(Math.abs(hour),'hour'),this.pluralize(Math.abs(min),'min'))
+            }
+        }
     }
 
     public convertDatetime(datetime: Date){
@@ -43,6 +60,7 @@ export class TaskListComponent {
         let dueDate = this.datepipe.transform(datetime, 'dd/MM/yyyy h:mm a').split(" ")
 
         if (date_now == dueDate[0]){
+            // duedate is today
             return this.formatString('Today, {0} {1}',dueDate[1],dueDate[2])
         }
         else {
@@ -70,7 +88,7 @@ export class TaskListComponent {
         }, 300);
     }
     
-    toDetail(id) {
+    toDetail(id : number) {
         this.router.navigate(['/detail', id ]);
     }
 }

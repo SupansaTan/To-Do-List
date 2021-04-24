@@ -1,23 +1,29 @@
-<ActionBar *ngIf="router.url === '/'" flat="true" title="To-Do List">
-    <ActionItem android.systemIcon="ic_menu_help" ios.position="left" [nsRouterLink]="['/about']"></ActionItem>
+<!-- home -->
+<ActionBar *ngIf="router.url === '/'" flat="true" title="Taskky">
+    <ActionItem text="about" [nsRouterLink]="['/about']" ios.systemIcon="16" ios.position="right" android.position="popup">
+    </ActionItem>
     <ActionItem ios.systemIcon="4" android.systemIcon="ic_menu_add" ios.position="right" [nsRouterLink]="['/add']">
     </ActionItem>
 </ActionBar>
 
+<!-- task detail -->
 <ActionBar *ngIf="router.url === '/detail/'+id" flat="true" title="Detail">
     <NavigationButton android.systemIcon="ic_menu_back" text="Back" [nsRouterLink]="['/']"></NavigationButton>
     <ActionItem android.systemIcon="ic_menu_edit" ios.position="right"(tap)="edit(task.id)"></ActionItem>
     <ActionItem android.systemIcon="ic_menu_delete" ios.position="right"(tap)="delete(task.id)"></ActionItem>
 </ActionBar>
 
+<!-- create task -->
 <ActionBar *ngIf="router.url === '/add'" flat="true" title="Create Task">
     <NavigationButton android.systemIcon="ic_menu_back" text="Back" (tap)="back_to_homepage()"></NavigationButton>
 </ActionBar>
 
+<!-- edit task -->
 <ActionBar *ngIf="router.url === '/edit/'+id" flat="true" title="Edit Task">
     <NavigationButton android.systemIcon="ic_menu_back" text="Back" (tap)="back_previous_page()"></NavigationButton>
 </ActionBar>
 
+<!-- view photo -->
 <ActionBar *ngIf="image_path" flat="true" [title]="title">
     <NavigationButton android.systemIcon="ic_menu_back" text="Back" (tap)="back_previous_page()"></NavigationButton>
 </ActionBar>

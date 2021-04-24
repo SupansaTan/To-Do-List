@@ -1,5 +1,5 @@
 <GridLayout rows="auto,*" columns="*" *ngIf="this.tasks.length == 0">
-    <Image row="0" col="0" src="~/app/images/add-task.png" horizontalAlignment="right" marginRight="20"
+    <Image row="0" col="0" src="~/app/images/add-task.png" horizontalAlignment="right" marginRight="60"
         class="add-task-img" width="170" stretch="aspectFit">
     </Image>
     <Image row="1" col="0" horizontalAlignment="center" verticalAlignment="center" src="~/app/images/task-empty.png" 
@@ -21,8 +21,8 @@
                         <Label class="duedate" row="1" col="0" colSpan="2" (tap)="toDetail(item.id)"
                             [text]="convertDatetime(item.due_date)" horizontalAlignment="left">
                         </Label>
-                        <Label class="countdown" row="2" col="0" colSpan="2" (tap)="toDetail(item.id)"
-                            [text]="countdown(item.due_date)">
+                        <Label class="{{ item.overdue ? 'overdue':'countdown' }}" row="2" col="0" colSpan="2" 
+                            (tap)="toDetail(item.id)" [text]="countdown(item.due_date,item.id)">
                         </Label>
                     </GridLayout>
                 </CardView>

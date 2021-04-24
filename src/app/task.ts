@@ -4,4 +4,5 @@ export interface Task {
     date: string;
     photo: Array<String>;
     notify: boolean;
+    overdue: boolean;
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as AppSettings from '@nativescript/core/application-settings'
+import { convertHSLToRGBColor } from '@nativescript/core/css/parser';
 import { LocalNotifications } from '@nativescript/local-notifications';
 import { Task } from './task'
 
@@ -24,6 +25,10 @@ export class TaskService {
         }
     }
 
+    public setOverdue(id: number, overdue: boolean){
+        this.tasks.find(task => task.id == id).overdue = overdue
+    }
+
     public getTasks(): Array<any> {
         return this.tasks;
     }
@@ -32,20 +37,20 @@ export class TaskService {
         return this.tasks.filter(x => x.id == id)[0];
     }
 
-    public addTask(name: string, detail:string, datetime:Date, photoPath:Array<string>, notify:boolean){
-        let last_id;
-
+    public addTask(name: string, detail:string, datetime:Date, photoPath:Array<string>, notify:boolean, overdue:boolean){
+        let last_id: number;
+        
         /* get id */
         this.tasks.length > 0 ? last_id=this.tasks[this.tasks.length-1].id : last_id=0
-
         this.tasks.push(
             {
               'id': last_id+1,
-              'name': name,
+              'name': name == undefined ? name='':name,
               'detail': detail,
               'due_date': datetime,
               'photo': photoPath,
               'notify': notify,
+              'overdue': overdue,
             }
         );
         this.tasks.sort((a, b) => a.due_date < b.due_date ? -1 : a.due_date > b.due_date ? 1 : 0) // sort tasks by due date
@@ -56,7 +61,7 @@ export class TaskService {
         }
     }
 
-    public editTask(id:number, name: string, detail:string, datetime:Date, photoPath:Array<string>, notify:boolean){
+    public editTask(id:number, name: string, detail:string, datetime:Date, photoPath:Array<string>, notify:boolean, overdue:boolean){
         this.tasks[id] = {
             'id': id,
             'name': name,
@@ -64,6 +69,7 @@ export class TaskService {
             'due_date': datetime,
             'photo': photoPath,
             'notify': notify,
+            'overdue': overdue,
         }
         this.tasks.sort((a, b) => a.due_date < b.due_date ? -1 : a.due_date > b.due_date ? 1 : 0) // sort tasks by due date
         AppSettings.setString("TaskData", JSON.stringify(this.tasks));
@@ -80,10 +86,11 @@ export class TaskService {
             if(this.tasks[i].id == id) {
               this.tasks.splice(i, 1);
               this.tasks.sort((a, b) => a.due_date < b.due_date ? -1 : a.due_date > b.due_date ? 1 : 0) // sort tasks by due date
-              AppSettings.setString("TaskData", JSON.stringify(this.tasks))
               break;
             }
         }
+        this.tasks.map(task => task.id = this.tasks.indexOf(task)) // reorder id
+        AppSettings.setString("TaskData", JSON.stringify(this.tasks))
     }
 
     private setNotify(id:number, name:string, datetime:Date){
@@ -100,13 +107,6 @@ export class TaskService {
                 at: date_notify,
                 forceShowWhenInForeground: true,
             },
-        ]).then(
-            (scheduledIds) => {
-                console.log('Notification id(s) scheduled: ' + JSON.stringify(scheduledIds));
-            },
-            (error) => {
-                console.log('scheduling error: ' + error);
-            }
-        );
+        ])
     }
 }
