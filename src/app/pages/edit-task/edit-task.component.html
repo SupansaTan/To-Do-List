@@ -4,11 +4,12 @@
     <StackLayout class="container">
         <GridLayout class="grid-container" rows="auto,auto,auto,auto,auto,auto,auto,auto" columns="*,*"> 
             <Label row="0" col="0" colspan="2" text="Title"></Label>
-            <TextField row="1" col="0" colSpan="2" [(ngModel)]="task_name"></TextField> 
+            <TextField row="1" col="0" colSpan="2" [(ngModel)]="task_name" fontSize="16"></TextField> 
 
             <Label row="2" col="0" colspan="2" text="Detail"></Label>
             <TextView row="3" col="0" colSpan="2" style="margin-top: 15px" borderColor="#DEDEDE" borderWidth="1" 
-            borderRadius="2" height="150" [(ngModel)]="task.detail" class="input input-border"></TextView>
+            borderRadius="2" height="150" [(ngModel)]="task_detail" fontSize="16">
+            </TextView>
             <ScrollView *ngIf="task.photo" row="4" col="0" colSpan="2" orientation="horizontal">
                 <StackLayout orientation="horizontal" *ngIf="hasImage">
                     <GridLayout *ngFor="let photo of task_photo" rows="*" columns="auto,20">
@@ -36,7 +37,7 @@
                 <Switch dock="right" [(ngModel)]="task_notify"></Switch>
             </DockLayout>
         </GridLayout>
-        <Button class="save" text="Save"></Button>
+        <Button class="save" text="Save" (tap)="edit()"></Button>
     </StackLayout>
 
 </ScrollView>

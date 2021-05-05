@@ -20,7 +20,6 @@
 <!-- edit task -->
 <ActionBar *ngIf="router.url === '/edit/'+id" flat="true" title="Edit Task">
     <NavigationButton android.systemIcon="ic_menu_back" text="Back" (tap)="back_previous_page()"></NavigationButton>
-    <ActionItem android.systemIcon="ic_menu_save" ios.position="right"></ActionItem>
     <ActionItem android.systemIcon="ic_menu_delete" ios.position="right" (tap)="delete(id)"></ActionItem>
 </ActionBar>
 

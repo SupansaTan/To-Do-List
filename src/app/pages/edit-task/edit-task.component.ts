@@ -37,12 +37,11 @@ export class EditTaskComponent {
                 this.task = this.taskService.getTask(id);
                 this.task_name = this.task.name
                 this.task_detail = this.task.detail
-                this.task_date = this.task.due_date
                 this.task_photo = this.task.photo
                 this.task_notify = this.task.notify
-                this.date = this.task_date
-                this.time = this.task_date
-               }
+                this.date = this.task.due_date
+                this.time = this.task.due_date
+    }
     
     ngOnInit() {
 
@@ -56,6 +55,7 @@ export class EditTaskComponent {
         datetime < now ? overdue=true : overdue=false
 
         this.taskService.editTask(this.task.id,this.task_name, this.task_detail, datetime, this.task_photo, this.task_notify, overdue)
+        this.location.back()
     }
     
     public getRandomString() {
