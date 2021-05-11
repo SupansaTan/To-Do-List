@@ -68,7 +68,7 @@ export class TopBarComponent {
         Dialogs.confirm(confirmOptions).then(result => {
             if(result){
                 this.taskService.deleteTask(id);
-                this.location.back()
+                this.router.navigate(['/']);
             }
         })
     }
